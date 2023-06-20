@@ -250,7 +250,7 @@ impl EGraph {
                 for (_, offs) in ix.iter() {
                     for off in offs {
                         assert!(
-                            (*off as usize) < function.nodes.len(),
+                            (*off as usize) < function.nodes.num_offsets(),
                             "index contains offset {off:?}, which is out of range for function {name}"
                         );
                     }
@@ -270,7 +270,7 @@ impl EGraph {
                         for (_, offs) in ix.iter() {
                             for off in offs {
                                 assert!(
-                                (*off as usize) < function.nodes.len(),
+                                (*off as usize) < function.nodes.num_offsets(),
                                 "index contains offset {off:?}, which is out of range for function {name}"
                             );
                             }
@@ -737,7 +737,7 @@ impl EGraph {
 
     pub fn set_option(&mut self, name: &str, value: Expr) {
         match name {
-            "enable_proofs" => {
+            "" => {
                 panic!("enable_proofs must be set as the first line of the file");
             }
             "match_limit" => {
